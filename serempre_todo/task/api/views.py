@@ -1,12 +1,11 @@
 # Rest Framework
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
 from rest_framework.permissions import IsAuthenticated
-# Model
-from serempre_todo.task.models import Task
 
 # Serializer
 from serempre_todo.task.api.serializers import TaskSerializer
+# Model
+from serempre_todo.task.models import Task
 
 
 class TaskViewSet(viewsets.ModelViewSet):

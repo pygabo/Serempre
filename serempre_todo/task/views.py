@@ -1,11 +1,10 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
-
-# Model
-from serempre_todo.task.models import Task
+from django.views.generic import CreateView, ListView, UpdateView
 
 # Forms
 from serempre_todo.task.forms import TaskForm, TaskTimeWorkedForm
+# Model
+from serempre_todo.task.models import Task
 
 
 class TaskListView(ListView):

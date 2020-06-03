@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.db import models
 
+from serempre_todo.utils.choices import TASK_PRIORITY, TASK_STATUS
 # Utils
 from serempre_todo.utils.models import BaseModel
-from serempre_todo.utils.choices import TASK_STATUS, TASK_PRIORITY
 
 
 class Task(BaseModel):

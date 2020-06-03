@@ -3,7 +3,6 @@ from uuid import uuid4
 
 # Django
 from django.db.models import UUIDField
-
 # Third party imports
 from model_utils.models import SoftDeletableModel, TimeStampedModel
 
