@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Forms
 from serempre_todo.task.forms import TaskForm, TaskTimeWorkedForm
@@ -7,24 +8,24 @@ from serempre_todo.task.forms import TaskForm, TaskTimeWorkedForm
 from serempre_todo.task.models import Task
 
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'task_list'
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('task-list')
 
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('task-list')
 
 
-class TaskTimeWorkedUpdateView(UpdateView):
+class TaskTimeWorkedUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskTimeWorkedForm
     success_url = reverse_lazy('task-list')
