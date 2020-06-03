@@ -1,25 +1,26 @@
-from rest_framework import serializers
+from django.forms import ModelForm
 
 # Model
 from serempre_todo.task.models import Task
 
 
-class TaskSerializer(serializers.ModelSerializer):
+class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = (
-            'id',
             'title',
             'description',
             'estimated_time',
-            'time_worked',
-            'remaining_time',
             'status',
             'assignee',
             'reporter',
             'priority',
         )
-        read_only_fields = (
-            'id',
-            'remaining_time',
+
+
+class TaskTimeWorkedForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = (
+            'time_worked',
         )
