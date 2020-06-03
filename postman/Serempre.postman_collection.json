@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "a67740d7-5f30-4227-83bd-bdffee6c8324",
+		"name": "Serempre",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Task_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6042f50c-b750-49da-b5da-6b88603deedf",
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.environment.set(\"task_id\", `${json.id}`);",
+							"",
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"DevOps AWS\",\n    \"description\": \"Deploy app Aws\",\n    \"estimated_time\":1,\n    \"status\": \"TD\",\n    \"assignee\": 1,\n    \"reporter\": 2,\n    \"priority\": \"ME\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/task/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"task",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f03e5f77-527f-4eef-b653-12e367481019",
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.environment.set(\"token\", `${json.token}`);",
+							"",
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"super\",\n\t\"password\":\"Holamundo3·\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth-token/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth-token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task_list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "194a3414-087b-4974-8e8c-3bace7aa9cb8",
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"pm.environment.set(\"task_id\", `${json[0].id}`);",
+							"",
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/task/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"task",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task_read",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbedc723-299e-49d4-a1b6-335582405399",
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Token {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/task/{{task_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"task",
+						"{{task_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task_update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c224213-3288-4cbf-8f5e-7313f4fb8f4a",
+						"exec": [
+							"var json = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Token {{token}}"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"time_worked\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/task/{{task_id}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"task",
+						"{{task_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task_delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Token {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/task/{{task_id}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"task",
+						"{{task_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
